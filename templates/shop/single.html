@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static '/css/singleprod/singleprod.css' %}">
+{% endblock styles %}
+{% block content %}
+</header>
+<main>
+    <section class='singleprodmain'>
+        <span class='singleprodtitle'>
+            <h1>{{ product.model }}</h1>
+            <h3>{{ product.brand }}</h3>
+            {% if product.sale != None %}
+            <span>{{ product.sale }} zł</span>
+            {% endif %}
+        </span>
+        <span class='singleprodtitlefixed stitfixnone'>
+            <h1>{{ product.model }}</h1>
+            <h3>{{ product.brand }}</h3>
+            {% if product.sale != None %}
+            <span>{{ product.sale }} zł</span>
+            {% endif %}
+        </span>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis iste consequuntur incidunt
+            necessitatibus rem quasi recusandae accusantium, optio molestiae sit laboriosam, autem inventore harum?
+            Suscipit aperiam tempore autem temporibus accusantium, deserunt eveniet porro recusandae blanditiis dolores
+            voluptatum, cupiditate incidunt consectetur, quam quis laudantium unde magnam. Aut necessitatibus eius
+            maiores ratione velit temporibus voluptas eveniet consequuntur praesentium dolorum atque dolorem, amet,
+            explicabo saepe placeat, doloremque optio? Deleniti animi quo, eum repellendus in aut minus saepe magnam
+            velit exercitationem id excepturi beatae! Quibusdam, earum veniam labore tempore cupiditate voluptas cum
+            magnam tempora at, suscipit minus neque sequi, nisi obcaecati ipsum mollitia minima.</p>
+        {% for p in product.productimage_set.all %}
+        <figure>
+            <img src="{{ p.image.url }}">
+        </figure>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis iste consequuntur incidunt
+            necessitatibus rem quasi recusandae accusantium, optio molestiae sit laboriosam, autem inventore harum?
+            Suscipit aperiam tempore autem temporibus accusantium, deserunt eveniet porro recusandae blanditiis dolores
+            voluptatum, cupiditate incidunt consectetur, quam quis laudantium unde magnam. Aut necessitatibus eius
+            maiores ratione velit temporibus voluptas eveniet consequuntur praesentium dolorum atque dolorem, amet,
+            explicabo saepe placeat, doloremque optio? Deleniti animi quo, eum repellendus in aut minus saepe magnam
+            velit exercitationem id excepturi beatae! Quibusdam, earum veniam labore tempore cupiditate voluptas cum
+            magnam tempora at, suscipit minus neque sequi, nisi obcaecati ipsum mollitia minima.</p>
+        {% endfor %}
+    </section>
+    <section class="singleprodleft">
+        <section class="infoprod">
+            {% for p in product.productimage_set.all %}
+            <figure>
+                <img src="{{ p.image.url }}">
+            </figure>
+            {% endfor %}
+        </section>
+    </section>
+</main>
+<aside class="foryou">
+    <h3>polecane dla Ciebie</h3>
+    <div class="h3line"></div>
+    <section id="carousel2" class="carousel slide" data-ride="carousel">
+        <article class="carousel-inner">
+            {% for product in products %}
+            <section class="carousel-item item">
+                <section>
+                    <figure class="productpic">
+                        <img src="{{ product.thumbnail.url }}" alt="" />
+                    </figure>
+                    <span class="price">
+                        <p>
+                            {{ product.price }}</p>
+                    </span>
+                    <span class="caption">
+                        <h4>
+                            {{ product.model }}</h4>
+                        <p>
+                            {{ product.brand }}</p>
+                    </span>
+                    <span
+                        class="numinstock {% if product.inStock < 10 and product.inStock > 0 %} instocklow {% elif product.inStock == 0 %} instocknone {% endif %}">
+                        {% if product.inStock == 0 %}
+                        <p>wyprzedane</p>
+                        {% else %}
+                        <p>pozostało: &nbsp;</p> {{ product.inStock }}
+                        {% endif %}
+                    </span>
+                    <button class="addtocart"><i class="fa fa-shopping-cart"></i></button>
+                    <button class="addtofav"><i class="fa fa-heart"></i></button>
+                </section>
+            </section>
+            {% endfor %}
+        </article>
+        <a class="carousel-control-prev carousel-controls" href="#carousel2" role="button" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next carousel-controls" href="#carousel2" role="button" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </section>
+</aside>
+<script>
+    $(document).ready(function () {
+        $('.infoprod figure').first().addClass('bigpic');
+    });
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > $('.singleprodmain p').first().offset().top) {
+            $('.singleprodtitlefixed').removeClass('stitfixnone');
+        } else {
+            $('.singleprodtitlefixed').addClass('stitfixnone');
+        }
+    });
+    $('.infoprod figure').click(function () {
+        $(this).addClass('bigpic');
+        $(this).siblings().removeClass('bigpic');
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+</header>
+{% if cartEmpty or cart.total == 0 %}
+<h2>Twój koszyk jest pusty!</h2>
+{% else %}
+<table>
+    <thead>
+        <td>produkt</td>
+        <td>cena</td>
+        <td>ilość</td>
+        <td>usuń</td>
+    </thead>
+    {% for item in cart.cartitem_set.all %}
+    <tr>
+        <td>
+            <!-- <figure><img src="{{ item.thumbnail.url }}" alt=""></figure> -->
+            <p>{{ item.product }}</p>
+        </td>
+        <td>{{ item.product.sale }} zł</td>
+        <td>{{ item.quantity }}</td>
+        <td><a href="{% url 'update_cart' item.product.slug 0 %}"><i class="fa fa-times-circle"></i></a></td>
+    </tr>
+    {% endfor %}
+    <tfoot>
+        <td>łącznie:</td>
+        <td></td>
+        <td></td>
+        <td>{{ cart.total }} zł</td>
+    </tfoot>
+</table>
+{% endif %}
+{% endblock content %}
