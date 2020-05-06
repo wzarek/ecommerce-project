@@ -14,6 +14,19 @@ def get_upload_path_thumb(instance, filename):
     return os.path.join(
     '%s' % instance.brand,'%s' % instance.model, 'thumb', filename)
 
+class ProductCategory(models.Model):
+    title = models.CharField(max_length=10)
+    slug = models.SlugField(unique=True)
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        unique_together = ('title', 'slug')
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
 class Product(models.Model):
     brand = models.CharField(max_length=10)
     model = models.CharField(max_length=20)
@@ -24,6 +37,7 @@ class Product(models.Model):
     thumbnail = models.ImageField(upload_to=get_upload_path_thumb)
     inStock = models.DecimalField(decimal_places=0, max_digits=3, default=100)
     saleToday = models.BooleanField(default=False)
+    categories = models.ManyToManyField(ProductCategory)
 
     def __str__(self):
         return '%s %s' %(self.brand, self.model)
@@ -31,6 +45,11 @@ class Product(models.Model):
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=get_upload_path)
+
+class ProductSize(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    size = models.DecimalField(decimal_places=0, max_digits=2)
+    sizeInStock = models.IntegerField(default=1)
 
 
 

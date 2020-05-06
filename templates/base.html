@@ -25,6 +25,9 @@
 </head>
 
 <body>
+    <!-- <div class="screenload"><img src="{% static '/img/mkshop.png' %}" alt="">
+        <h1>twuj sklep</h1>
+    </div> -->
     <header>
         <nav>
             <ul>
@@ -35,16 +38,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" role="button">men</a>
+                    <a href="{% url 'category' cat='men' %}" role="button">men</a>
                     <section class="dropdown">
-                        <a href="#">sneakersy</a>
+                        <a href="{% url 'subcategory' cat='men' subcat='sneakersy'%}">sneakersy</a>
                         <a href="#">sale</a>
                     </section>
                 </li>
                 <li>
-                    <a href="#" role="button">women</a>
+                    <a href="{% url 'category' cat='women' %}" role="button">women</a>
                     <section class="dropdown">
-                        <a href="#">sneakersy</a>
+                        <a href="{% url 'subcategory' cat='women' subcat='sneakersy'%}">sneakersy</a>
                         <a href="#">sale</a>
                     </section>
                 </li>
@@ -61,10 +64,10 @@
                     <a href=""><i class="fa fa-user"></i></a>
                 </li>
             </ul>
-            <section class="search">
-                <input type="text" id="navSearch" placeholder="szukaj">
-                <a href=""><i class="fa fa-search"></i></a>
-            </section>
+            <form action='{% url 'search' %}' class="search">
+                <input type="text" id="navSearch" name='search' placeholder="szukaj">
+                <button type=submit><i class="fa fa-search"></i></button>
+            </form>
         </nav>
         {% block content %}
         {% endblock content%}
@@ -89,6 +92,9 @@
         {% block js %}
         {% endblock js %}
         <script>
+            // $(window).on('load', function () {
+            //     $('.screenload').addClass('screenloaded');
+            // });
             $(document).ready(function () {
                 $('#carousel2 .carousel-item').first().addClass('active');
             });
