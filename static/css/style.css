@@ -16,6 +16,45 @@ a:hover {
     text-decoration: none;
 }
 
+/* 
+.screenload {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #404040;
+    color: #fff;
+    z-index: 4;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    opacity: 1;
+    transition: 1s all ease-in;
+    overflow: hidden;
+}
+
+.screenload img {
+    margin: auto;
+    width: 60%;
+    transition: 1s all ease-in;
+}
+
+div.screenload h1 {
+    transform: scale(1);
+    transition: 1s all ease-in;
+}
+
+div.screenloaded {
+    height: 0;
+}
+
+div.screenloaded h1 {
+    transform: scale(0);
+}
+
+div.screenloaded img {
+    width: 0%;
+} */
 
 /* body>div:first-of-type {
     display: none !important;
@@ -119,7 +158,7 @@ nav {
     /* background-image: linear-gradient(#217AFF, #7E7AFF); */
     background-color: #404040;
     position: fixed;
-    z-index: 9999999;
+    z-index: 1;
     width: 100%;
     border-bottom: 3px solid #fff;
     height: 5em;
@@ -195,6 +234,10 @@ nav .search input::placeholder {
     color: #fff;
 }
 
+nav .search button {
+    background-color: transparent;
+}
+
 nav .search i {
     color: #fff;
     margin-left: .5em;
@@ -208,6 +251,10 @@ li:hover>.dropdown {
 li a:hover {
     color: #fff;
     text-decoration: underline;
+}
+
+.carousel-indicators {
+    z-index: 3;
 }
 
 main h2 {
@@ -466,7 +513,7 @@ footer {
     align-items: center;
     height: 12em;
     margin-top: 4rem;
-    z-index: 9999;
+    z-index: 2;
 }
 
 footer .socialfooter {

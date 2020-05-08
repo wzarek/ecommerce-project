@@ -10,15 +10,23 @@
         <span class='singleprodtitle'>
             <h1>{{ product.model }}</h1>
             <h3>{{ product.brand }}</h3>
+            <form>
+                <label for='pSizes'>Dostępne rozmiary:</label>
+                <select id="pSizes" name="pSizes">
+                    {% for size in product.productsize_set.all %}
+                    <option value="{{ size.size }}">{{ size.size }}</option>
+                    {% endfor %}
+                </select>
+            </form>
             {% if product.sale != None %}
-            <span>{{ product.sale }} zł</span>
-            {% endif %}
-        </span>
-        <span class='singleprodtitlefixed stitfixnone'>
-            <h1>{{ product.model }}</h1>
-            <h3>{{ product.brand }}</h3>
-            {% if product.sale != None %}
-            <span>{{ product.sale }} zł</span>
+            <p>
+                <del>{{ product.price }} zł</del>
+                <span>{{ product.sale }} zł</span>
+            </p>
+            {% else %}
+            <p>
+                <span>{{ product.price }} zł</span>
+            </p>
             {% endif %}
         </span>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis iste consequuntur incidunt
@@ -44,64 +52,108 @@
         {% endfor %}
     </section>
     <section class="singleprodleft">
+        <p><a href="{% url 'category' cat=cat %}">{{ cat }}</a> - > <a
+                href="{% url 'subcategory' cat=cat subcat=subcat %}">{{ subcat }}</a> - > <a
+                href="{% url 'search' %}?search={{ product.brand }}">{{ product.brand }}</a></p>
         <section class="infoprod">
             {% for p in product.productimage_set.all %}
             <figure>
                 <img src="{{ p.image.url }}">
             </figure>
             {% endfor %}
-        </section>
-    </section>
-</main>
-<aside class="foryou">
-    <h3>polecane dla Ciebie</h3>
-    <div class="h3line"></div>
-    <section id="carousel2" class="carousel slide" data-ride="carousel">
-        <article class="carousel-inner">
-            {% for product in products %}
-            <section class="carousel-item item">
-                <section>
-                    <figure class="productpic">
-                        <img src="{{ product.thumbnail.url }}" alt="" />
-                    </figure>
-                    <span class="price">
-                        <p>
-                            {{ product.price }}</p>
-                    </span>
-                    <span class="caption">
-                        <h4>
-                            {{ product.model }}</h4>
-                        <p>
-                            {{ product.brand }}</p>
-                    </span>
-                    <span
-                        class="numinstock {% if product.inStock < 10 and product.inStock > 0 %} instocklow {% elif product.inStock == 0 %} instocknone {% endif %}">
-                        {% if product.inStock == 0 %}
-                        <p>wyprzedane</p>
-                        {% else %}
-                        <p>pozostało: &nbsp;</p> {{ product.inStock }}
-                        {% endif %}
-                    </span>
-                    <button class="addtocart"><i class="fa fa-shopping-cart"></i></button>
-                    <button class="addtofav"><i class="fa fa-heart"></i></button>
-                </section>
+            <section class="buttons">
+                <button onclick="window.location.href='{% url 'update_cart' product.slug 1 %}'" class="addtocart"><i
+                        class="fa fa-shopping-cart"></i></button>
+                <button class="addtofav"><i class="fa fa-heart"></i></button>
             </section>
-            {% endfor %}
-        </article>
-        <a class="carousel-control-prev carousel-controls" href="#carousel2" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next carousel-controls" href="#carousel2" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            <span class="sr-only">Next</span>
-        </a>
+        </section>
+        <span class='singleprodtitlefixed stitfixnone'>
+            <h1>{{ product.model }}</h1>
+            <h3>{{ product.brand }}</h3>
+            {% if product.sale != None %}
+            <p>
+                <del>{{ product.price }} zł</del>
+                <span>{{ product.sale }} zł</span>
+            </p>
+            {% else %}
+            <p>
+                <span>{{ product.price }} zł</span>
+            </p>
+            {% endif %}
+            <form id="sizesfixed">
+                <p>Dostępne rozmiary:</p>
+                {% for size in product.productsize_set.all %}
+                <label for="{{ size.size }}">{{ size.size }}</label>
+                <input type='radio' name='pSizes' id="{{ size.size }}" value="{{ size.size }}">
+                {% endfor %}
+            </form>
+        </span>
     </section>
+    <aside class="foryou">
+        <h3>polecane dla Ciebie</h3>
+        <div class="h3line"></div>
+        <section id="carousel2" class="carousel slide" data-ride="carousel">
+            <article class="carousel-inner">
+                {% for product in products %}
+                <section class="carousel-item item">
+                    <section>
+                        <figure class="productpic">
+                            <img src="{{ product.thumbnail.url }}" alt="" />
+                        </figure>
+                        <span class="price">
+                            <p>
+                                {{ product.price }}</p>
+                        </span>
+                        <span class="caption">
+                            <h4>
+                                {{ product.model }}</h4>
+                            <p>
+                                {{ product.brand }}</p>
+                        </span>
+                        <span
+                            class="numinstock {% if product.inStock < 10 and product.inStock > 0 %} instocklow {% elif product.inStock == 0 %} instocknone {% endif %}">
+                            {% if product.inStock == 0 %}
+                            <p>wyprzedane</p>
+                            {% else %}
+                            <p>pozostało: &nbsp;</p> {{ product.inStock }}
+                            {% endif %}
+                        </span>
+                        <button class="addtocart"><i class="fa fa-shopping-cart"></i></button>
+                        <button class="addtofav"><i class="fa fa-heart"></i></button>
+                    </section>
+                </section>
+                {% endfor %}
+            </article>
+            <a class="carousel-control-prev carousel-controls" href="#carousel2" role="button" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next carousel-controls" href="#carousel2" role="button" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </section>
+    </aside>
+</main>
+<aside class='d-none picgallery'>
+    <figure class='showfullpic'><img src="" alt=""></figure>
+    {% for p in product.productimage_set.all %}
+    <figure class='picsunder'>
+        <img src="{{ p.image.url }}">
+    </figure>
+    {% endfor %}
 </aside>
+<div class="blurry d-none"></div>
+
 <script>
     $(document).ready(function () {
         $('.infoprod figure').first().addClass('bigpic');
     });
+    // $('.bigpic').click(function () {
+    //     console.log('klikles');
+    //     // $('.showfullpic img').attr('src', $(this).attr('src'));
+    //     // $('.showfullpic').addClass('d-none');
+    // });
     $(window).scroll(function () {
         if ($(window).scrollTop() > $('.singleprodmain p').first().offset().top) {
             $('.singleprodtitlefixed').removeClass('stitfixnone');
@@ -110,8 +162,37 @@
         }
     });
     $('.infoprod figure').click(function () {
-        $(this).addClass('bigpic');
-        $(this).siblings().removeClass('bigpic');
+        if ($(this).hasClass('bigpic')) {
+            $('.showfullpic img').attr("src", $(this).find('img').attr("src"));
+            $('.picgallery').removeClass('d-none');
+            $('.blurry').removeClass('d-none');
+            $('header').addClass('blurred');
+            $('main').addClass('blurred');
+            $('footer').addClass('blurred');
+            $('aside').addClass('blurred');
+            $('.picgallery').removeClass('blurred');
+        } else {
+            $(this).addClass('bigpic');
+            $(this).siblings().removeClass('bigpic');
+        }
+    });
+    $('.blurry').click(function () {
+        $(this).addClass('d-none');
+        $('.picgallery').addClass('d-none');
+        $('header').removeClass('blurred')
+        $('main').removeClass('blurred');
+        $('footer').removeClass('blurred');
+        $('aside').removeClass('blurred');
+        $('.picsunder').removeClass('activeprodimg');
+    });
+    $('.picsunder').click(function () {
+        $('.showfullpic img').attr('src', $(this).find('img').attr('src'));
+        $(this).addClass('activeprodimg');
+        $(this).siblings().removeClass('activeprodimg');
+    });
+    $('#sizesfixed label').click(function () {
+        $(this).addClass('activeradio');
+        $(this).siblings().removeClass('activeradio');
     });
 </script>
 {% endblock content %}

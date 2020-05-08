@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+</header>
+<main>
+    <h1>Znaleziono {{ products.all.count }} wyników dla '{{ query }}'</h1>
+    {% for product in products %}
+    <h3>{{ product.brand }} {{ product.model }}</h3>
+    {% endfor %}
+</main>
+{% endblock content %}

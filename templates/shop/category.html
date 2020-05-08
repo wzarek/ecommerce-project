@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+</header>
+<main>
+    <h1>{{ cat }}</h1>
+    {% if subcat %}
+    <p>{{ subcat }}</p>
+    {% endif %}
+    {% for p in products %}
+    <h3>{{ p.brand }} {{ p.model }}</h3>
+    {% endfor %}
+</main>
+{% endblock content %}
