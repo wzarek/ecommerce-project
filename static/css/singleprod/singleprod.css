@@ -62,6 +62,47 @@ main .singleprodtitlefixed {
     left: 4em;
 }
 
+main .singleprodtitlefixed form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: space-between;
+}
+
+main .singleprodtitlefixed form p {
+    margin: 0;
+    width: 100%;
+}
+
+main .singleprodtitlefixed form input[type="radio"] {
+    -webkit-appearance: none;
+    width: 0;
+}
+
+main .singleprodtitlefixed form label {
+    width: 4em;
+    height: 2em;
+    padding: .2em;
+    border: 1px solid #404040;
+    text-align: center;
+    transition-duration: .5s;
+    margin-bottom: 1em;
+
+}
+
+main .singleprodtitlefixed form label:hover {
+    background-color: #404040;
+    color: #fff;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.activeradio {
+    background-color: #404040;
+    color: #fff;
+    cursor: pointer;
+}
+
 main .stitfixnone {
     display: none;
 }

@@ -80,13 +80,12 @@
                 <span>{{ product.price }} zł</span>
             </p>
             {% endif %}
-            <form>
-                <label for='pSizes'>Dostępne rozmiary:</label>
-                <select id="pSizes" name="pSizes">
-                    {% for size in product.productsize_set.all %}
-                    <option value="{{ size.size }}">{{ size.size }}</option>
-                    {% endfor %}
-                </select>
+            <form id="sizesfixed">
+                <p>Dostępne rozmiary:</p>
+                {% for size in product.productsize_set.all %}
+                <label for="{{ size.size }}">{{ size.size }}</label>
+                <input type='radio' name='pSizes' id="{{ size.size }}" value="{{ size.size }}">
+                {% endfor %}
             </form>
         </span>
     </section>
@@ -190,6 +189,10 @@
         $('.showfullpic img').attr('src', $(this).find('img').attr('src'));
         $(this).addClass('activeprodimg');
         $(this).siblings().removeClass('activeprodimg');
+    });
+    $('#sizesfixed label').click(function () {
+        $(this).addClass('activeradio');
+        $(this).siblings().removeClass('activeradio');
     });
 </script>
 {% endblock content %}
