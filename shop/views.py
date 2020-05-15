@@ -34,14 +34,12 @@ def search(request):
 
 def subcategory(request, cat, subcat):
     try:
-        if subcat:
-            products = ProductCategory.objects.get(title=cat).product_set.all()
-        else:
-            products = ProductCategory.objects.select_related().get(title=cat).product_set.all()
+        products = ProductCategory.objects.filter(title=subcat).get(parent__title=cat).product_set.all()
     except:
         products = None
+    subcategories = ProductCategory.objects.filter(parent__title=cat)
     template = 'shop/category.html'
-    context = {'products':products, 'cat': cat, 'subcat':subcat}
+    context = {'products':products, 'cat': cat, 'subcat':subcat, 'subcats': subcategories}
     return render(request, template, context)
 
 def category(request, cat):
@@ -50,8 +48,9 @@ def category(request, cat):
         updateproduct(products)
     except:
         products = None
+    subcategories = ProductCategory.objects.filter(parent__title=cat)
     template = 'shop/category.html'
-    context = {'products':products, 'cat': cat}
+    context = {'products':products, 'cat': cat, 'subcats': subcategories}
     return render(request, template, context)
 
 def subcatprod(request, cat, subcat, slug):

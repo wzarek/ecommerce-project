@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/css/contact/contact.css' %}">
+{% endblock styles %}
+
+{% block content %}
+</header>
+<main>
+    <h1>kontakt</h1>
+    <form method="POST" id="contactform">
+        <h2>formularz kontaktowy</h2>
+        {% csrf_token %}
+        {{ form.firstName }}
+        {{ form.lastName }}
+        {{ form.email }}
+        {{ form.message }}
+        <button type="submit">klik</button>
+    </form>
+    <div class="contactline"></div>
+    <section class="aboutus">
+        <h2>dane kontaktowe</h2>
+        <ul>
+            <li><span>email:</span> contact@mkshop.com</li>
+            <li><span>adres:</span> ul. Jakas 47, 44-100 Gliwice</li>
+            <li><span>telefon:</span> 690 904 949</li>
+        </ul>
+        <iframe
+            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;coord=55.86378813583537, -3.0388907829449483&amp;q=60-40%20Cushat%20Gardens%2C%20Mayfield%2C%20Dalkeith+(mkshop)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a
+                href="https://www.maps.ie/draw-radius-circle-map/">Google Maps Radius</a></iframe>
+    </section>
+</main>
+{% endblock content %}

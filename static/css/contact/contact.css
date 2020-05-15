@@ -1,0 +1,112 @@
+body {
+    grid-template-areas:
+        "header header"
+        "main main"
+        "footer footer";
+}
+
+main {
+    display: grid;
+    grid-template-columns: 5fr 1fr 5fr;
+    grid-template-areas:
+        "h1 h1 h1"
+        "form line about";
+    justify-content: center;
+}
+
+main h1 {
+    grid-area: h1;
+    margin: 2em 3em 2em 4em;
+}
+
+main form {
+    width: 30rem;
+    grid-area: form;
+    justify-self: end;
+}
+
+main form h2 {
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+main form input {
+    display: block;
+    outline: none;
+    border: none;
+    box-shadow: 1px 2px 3px #40404017;
+    margin-bottom: 1em;
+    width: 30rem;
+    padding: .5em .5em;
+}
+
+input::placeholder {
+    color: #7e7d7db2;
+}
+
+textarea::placeholder {
+    color: #7e7d7db2;
+}
+
+main form textarea {
+    border: none;
+    box-shadow: 1px 2px 3px #40404017;
+    display: block;
+    resize: none;
+    margin-bottom: 1em;
+    width: 30rem;
+    padding: .5em .5em;
+}
+
+main form button {
+    padding: .5em 3em;
+    border-radius: 1em;
+    box-shadow: 1px 2px 3px #40404049;
+    transition: .2s all ease-in;
+    float: right;
+}
+
+main form button:hover {
+    transform: scale(1.1);
+    background-color: #404040;
+    color: #fff;
+}
+
+.contactline {
+    margin: auto;
+    grid-area: line;
+    height: 90%;
+    border-right: 1px solid #404040;
+}
+
+.aboutus {
+    grid-area: about;
+    width: 60%;
+    margin: 0;
+}
+
+.aboutus h2 {
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.aboutus ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.aboutus ul li {
+    margin-bottom: .5em;
+}
+
+.aboutus ul li span {
+    font-weight: 500;
+    display: block;
+}
+
+.aboutus iframe {
+    margin-top: 3em;
+    width: 100%;
+    height: 20em;
+}
