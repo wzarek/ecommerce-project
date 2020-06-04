@@ -1,0 +1,116 @@
+body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
+      grid-template-areas: "header header header" ". main ." "footer footer footer";
+}
+
+h1 {
+  margin-top: 2em;
+}
+
+main h3 {
+  display: inline;
+  padding-bottom: 3em;
+}
+
+.singleprodcat {
+  width: 80%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.5fr 2fr 3fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 3fr 1fr 1fr;
+  margin: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  margin-top: 2em;
+}
+
+.singleprodcat figure {
+  width: 8em;
+  height: 8em;
+  -webkit-box-shadow: 2px 2px 8px #4040402f;
+          box-shadow: 2px 2px 8px #4040402f;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.singleprodcat figure img {
+  width: 100%;
+}
+
+.singleprodcat h3 {
+  font-weight: 400;
+}
+
+.singleprodcat:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.singleprodcat .buttonscat button {
+  display: block;
+  width: 50%;
+  border-radius: 1em;
+  margin: .5em 0;
+  -webkit-box-shadow: 2px 2px 8px #4040402f;
+          box-shadow: 2px 2px 8px #4040402f;
+  z-index: 9999;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.singleprodcat .buttonscat button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #404040;
+  color: #fff;
+}
+
+.search {
+  text-align: center;
+  margin: -.5em auto auto auto;
+  padding: 0 0 .3em 0;
+}
+
+.search input {
+  width: 15em;
+  padding: .3em 0;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #404040;
+  color: #404040;
+}
+
+.search input::-webkit-input-placeholder {
+  color: #404040;
+}
+
+.search input:-ms-input-placeholder {
+  color: #404040;
+}
+
+.search input::-ms-input-placeholder {
+  color: #404040;
+}
+
+.search input::placeholder {
+  color: #404040;
+}
+
+.search button {
+  background-color: transparent;
+}
+
+.search i {
+  color: #404040;
+  margin: 0 0 0 .5em;
+}
+/*# sourceMappingURL=search.css.map */

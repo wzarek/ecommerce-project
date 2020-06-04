@@ -1,0 +1,119 @@
+body {
+      grid-template-areas: "header header" "main main" "footer footer";
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+  grid-template-columns: 1fr 5fr;
+  padding-top: 5em;
+      grid-template-areas: "leftcat rightcat";
+  position: relative;
+}
+
+main .leftcat {
+  margin: 2em 5em;
+  border-right: 1px solid #404040;
+  /* padding: 0 4em; */
+  width: 10em;
+  height: 50%;
+  position: fixed;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: leftcat;
+}
+
+main .leftcat h1 {
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+main .leftcat h3 {
+  font-size: 1.3rem;
+}
+
+main .leftcat * {
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+main .leftcat h3 a:hover {
+  margin-left: .5rem;
+}
+
+main .leftcat h3.subcatact a {
+  font-weight: bolder;
+  margin-left: .5rem;
+}
+
+div.catline {
+  width: 0;
+  margin: 0 auto;
+  border-bottom: 1px solid #404040;
+}
+
+main .productscat {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: rightcat;
+  margin-top: 2em;
+}
+
+.singleprodcat {
+  width: 80%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.5fr 2fr 3fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 3fr 1fr 1fr;
+  margin: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.singleprodcat figure {
+  width: 8em;
+  height: 8em;
+  -webkit-box-shadow: 2px 2px 8px #4040402f;
+          box-shadow: 2px 2px 8px #4040402f;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.singleprodcat figure img {
+  width: 100%;
+}
+
+.singleprodcat h3 {
+  font-weight: 400;
+}
+
+.singleprodcat:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.singleprodcat .buttonscat button {
+  display: block;
+  width: 50%;
+  border-radius: 1em;
+  margin: .5em 0;
+  -webkit-box-shadow: 2px 2px 8px #4040402f;
+          box-shadow: 2px 2px 8px #4040402f;
+  z-index: 9999;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+.singleprodcat .buttonscat button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #404040;
+  color: #fff;
+}
+/*# sourceMappingURL=cat.css.map */

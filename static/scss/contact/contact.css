@@ -1,0 +1,143 @@
+body {
+      grid-template-areas: "header header" "main main" "footer footer";
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5fr 1fr 5fr;
+  grid-template-columns: 5fr 1fr 5fr;
+      grid-template-areas: "h1 h1 h1" "form line about";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main h1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: h1;
+  margin: 2em 3em 2em 4em;
+}
+
+main form {
+  width: 30rem;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: form;
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+main form h2 {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+main form input {
+  display: block;
+  outline: none;
+  border: none;
+  -webkit-box-shadow: 1px 2px 3px #40404017;
+          box-shadow: 1px 2px 3px #40404017;
+  margin-bottom: 1em;
+  width: 30rem;
+  padding: .5em .5em;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #7e7d7db2;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #7e7d7db2;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: #7e7d7db2;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7e7d7db2;
+}
+
+main form textarea {
+  border: none;
+  -webkit-box-shadow: 1px 2px 3px #40404017;
+          box-shadow: 1px 2px 3px #40404017;
+  display: block;
+  resize: none;
+  margin-bottom: 1em;
+  width: 30rem;
+  padding: .5em .5em;
+}
+
+main form button {
+  padding: .5em 3em;
+  border-radius: 1em;
+  -webkit-box-shadow: 1px 2px 3px #40404049;
+          box-shadow: 1px 2px 3px #40404049;
+  -webkit-transition: .2s all ease-in;
+  transition: .2s all ease-in;
+  float: right;
+}
+
+main form button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #404040;
+  color: #fff;
+}
+
+.contactline {
+  margin: auto;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: line;
+  height: 90%;
+  border-right: 1px solid #404040;
+}
+
+.aboutus {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: about;
+  width: 60%;
+  margin: 0;
+}
+
+.aboutus h2 {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.aboutus ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.aboutus ul li {
+  margin-bottom: .5em;
+}
+
+.aboutus ul li span {
+  font-weight: 500;
+  display: block;
+}
+
+.aboutus iframe {
+  margin-top: 3em;
+  width: 100%;
+  height: 20em;
+}
+/*# sourceMappingURL=contact.css.map */

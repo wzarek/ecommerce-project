@@ -10,7 +10,7 @@ def cart(request):
         nowID = None
     if nowID:
         cart = Cart.objects.get(id=nowID)
-        context = {'cart': cart}
+        context = {'cart': cart, 'products': Product.objects.all()}
         totalPrice = 0.00
         for i in cart.cartitem_set.all():
             if i.product.sale != None:
@@ -23,7 +23,7 @@ def cart(request):
         cart.save()
         request.session['itemsInCart'] = cart.cartitem_set.all().count()
     else:
-        context = {'cartEmpty': True}
+        context = {'cartEmpty': True, 'products': Product.objects.all()}
     template = 'cart/cartview.html'
     return render(request, template, context)
 

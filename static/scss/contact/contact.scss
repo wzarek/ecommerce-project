@@ -1,0 +1,115 @@
+$color-main: #404040;
+$color-main-2: #40404017;
+
+@mixin grid($columns) {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+}
+
+body {
+    grid-template-areas: "header header""main main""footer footer";
+}
+
+main {
+    @include grid(5fr 1fr 5fr);
+    grid-template-areas: "h1 h1 h1""form line about";
+    justify-content: center;
+
+    h1 {
+        grid-area: h1;
+        margin: 2em 3em 2em 4em;
+    }
+
+    form {
+        width: 30rem;
+        grid-area: form;
+        justify-self: end;
+
+        h2 {
+            margin: 0;
+            margin-bottom: 1em;
+        }
+
+        input {
+            display: block;
+            outline: none;
+            border: none;
+            box-shadow: 1px 2px 3px $color-main-2;
+            margin-bottom: 1em;
+            width: 30rem;
+            padding: .5em .5em;
+        }
+    }
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #7e7d7db2;
+}
+
+main form {
+    textarea {
+        border: none;
+        box-shadow: 1px 2px 3px $color-main-2;
+        display: block;
+        resize: none;
+        margin-bottom: 1em;
+        width: 30rem;
+        padding: .5em .5em;
+    }
+
+    button {
+        padding: .5em 3em;
+        border-radius: 1em;
+        box-shadow: 1px 2px 3px #40404049;
+        transition: .2s all ease-in;
+        float: right;
+
+        &:hover {
+            transform: scale(1.1);
+            background-color: $color-main;
+            color: #fff;
+        }
+    }
+}
+
+.contactline {
+    margin: auto;
+    grid-area: line;
+    height: 90%;
+    border-right: 1px solid $color-main;
+}
+
+.aboutus {
+    grid-area: about;
+    width: 60%;
+    margin: 0;
+
+    h2 {
+        margin: 0;
+        margin-bottom: 1em;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            margin-bottom: .5em;
+
+            span {
+                font-weight: 500;
+                display: block;
+            }
+        }
+    }
+
+    iframe {
+        margin-top: 3em;
+        width: 100%;
+        height: 20em;
+    }
+}

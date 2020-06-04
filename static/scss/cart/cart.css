@@ -1,0 +1,125 @@
+body {
+  -ms-grid-columns: 1fr 4fr 1fr;
+      grid-template-columns: 1fr 4fr 1fr;
+      grid-template-areas: "header header header" ". main ." "footer footer footer";
+}
+
+main {
+  text-align: center;
+}
+
+main h2:first-of-type {
+  margin: 3rem 0 0 0;
+  padding-bottom: 1rem;
+}
+
+main > p:first-of-type {
+  padding-bottom: 3em;
+  text-align: left;
+}
+
+main h2 {
+  text-align: left;
+}
+
+main > button {
+  padding: .5em 3em;
+  border-radius: 1em;
+  -webkit-box-shadow: 1px 2px 3px #40404049;
+          box-shadow: 1px 2px 3px #40404049;
+  -webkit-transition: .2s all ease-in;
+  transition: .2s all ease-in;
+  margin-top: 4em;
+}
+
+main > button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #404040;
+  color: #fff;
+}
+
+main aside.foryou {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+main aside.foryou .carousel-inner {
+  height: 24em;
+  width: 100%;
+  overflow: hidden;
+}
+
+main aside.foryou .item > section {
+  width: 85%;
+  min-height: 23em;
+  max-height: 23em;
+}
+
+main aside.foryou .item figure.productpic {
+  height: 23em;
+  overflow: hidden;
+}
+
+main aside.foryou .item img {
+  margin-top: -18em;
+}
+
+main aside.foryou .item:hover figure.productpic {
+  height: 0em;
+}
+
+main aside.foryou .item:hover .caption {
+  margin: auto;
+  max-height: 3%;
+}
+
+main aside.foryou .item:hover .caption h4 {
+  padding-top: 5rem;
+  padding-bottom: .2em;
+}
+
+main aside.foryou .item:hover .caption p {
+  padding-bottom: 3em;
+}
+
+table {
+  margin-top: 2em;
+  width: 100%;
+  text-align: left;
+}
+
+table thead td {
+  font-weight: 500;
+  padding-bottom: 1em;
+}
+
+table tr td.imgname {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+table tr td.imgname figure {
+  width: 5em;
+  height: 5em;
+  overflow: hidden;
+}
+
+table tr td.imgname figure img {
+  width: 100%;
+}
+
+table tr td.imgname p {
+  margin-left: 2em;
+}
+
+table tfoot td {
+  font-weight: 500;
+  padding-top: 1em;
+}
+/*# sourceMappingURL=cart.css.map */

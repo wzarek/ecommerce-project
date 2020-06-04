@@ -1,0 +1,114 @@
+$color-main: #404040;
+
+@mixin grid($columns) {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+}
+
+body {
+    grid-template-areas:
+        "header header"
+        "main main"
+        "footer footer";
+}
+
+main {
+    @include grid(1fr 5fr);
+    padding-top: 5em;
+    grid-template-areas: "leftcat rightcat";
+    position: relative;
+
+    .leftcat {
+        margin: 2em 5em;
+        border-right: 1px solid $color-main;
+
+        /* padding: 0 4em; */
+        width: 10em;
+        height: 50%;
+        position: fixed;
+        grid-area: leftcat;
+
+        h1 {
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        * {
+            transition-duration: .5s;
+        }
+
+        h3 {
+            a:hover {
+                margin-left: .5rem;
+            }
+
+            &.subcatact a {
+                font-weight: bolder;
+                margin-left: .5rem;
+            }
+        }
+    }
+}
+
+div.catline {
+    width: 0;
+    margin: 0 auto;
+    border-bottom: 1px solid $color-main;
+}
+
+main .productscat {
+    grid-area: rightcat;
+    margin-top: 2em;
+}
+
+.singleprodcat {
+    width: 80%;
+    @include grid(1.5fr 2fr 3fr 1fr 1fr);
+    margin: auto;
+    align-items: center;
+    margin-bottom: 1em;
+    transition-duration: .5s;
+
+    figure {
+        width: 8em;
+        height: 8em;
+        box-shadow: 2px 2px 8px #4040402f;
+        border-radius: 1em;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    h3 {
+        font-weight: 400;
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+    }
+
+    .buttonscat button {
+        display: block;
+        width: 50%;
+        border-radius: 1em;
+        margin: .5em 0;
+        box-shadow: 2px 2px 8px #4040402f;
+        z-index: 9999;
+        transition-duration: .5s;
+
+        &:hover {
+            transform: scale(1.1);
+            background-color: $color-main;
+            color: #fff;
+        }
+    }
+}

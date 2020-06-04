@@ -1,0 +1,571 @@
+$white: #fff;
+$color-a: #212529;
+$tc: center;
+$color-main: #404040;
+
+@mixin flex($j-c, $a-i) {
+    display: flex;
+    justify-content: $j-c;
+    align-items: $a-i;
+}
+
+@mixin a-main {
+    color: $color-a;
+    text-decoration: none;
+}
+
+@mixin margin-padding($margin, $padding) {
+    margin: $margin;
+    padding: $padding;
+}
+
+@mixin grid($columns) {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+    @include margin-padding(0, 0);
+    background-color: #F8F6F6;
+}
+
+a {
+    @include a-main();
+
+    &:hover {
+        @include a-main();
+    }
+}
+
+/* 
+  .screenload {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: #404040;
+      color: $white;
+      z-index: 4;
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      opacity: 1;
+      transition: 1s all ease-in;
+      overflow: hidden;
+  }
+  
+  .screenload img {
+      margin: auto;
+      width: 60%;
+      transition: 1s all ease-in;
+  }
+  
+  div.screenload h1 {
+      transform: scale(1);
+      transition: 1s all ease-in;
+  }
+  
+  div.screenloaded {
+      height: 0;
+  }
+  
+  div.screenloaded h1 {
+      transform: scale(0);
+  }
+  
+  div.screenloaded img {
+      width: 0%;
+  } */
+
+/* body>div:first-of-type {
+      display: none !important;
+  } */
+
+/* body div.cbalink {
+      display: none !important;
+  } */
+
+body * {
+    @include margin-padding(0, 0);
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+body {
+    width: 100%;
+    @include margin-padding(auto, 0);
+    @include grid(4fr 1fr);
+    grid-template-areas: "header header""slider slider""main aside""newsletter newsletter""promos foryou""footer footer";
+}
+
+header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: header;
+
+    * {
+        transition-duration: .5s;
+    }
+
+    .carousel {
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+        -ms-grid-column-span: 2;
+        @include margin-padding(5em 0 0 0, 0);
+        grid-area: slider;
+        height: 25vw;
+        overflow: hidden;
+    }
+}
+
+main {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    @include margin-padding(5em 0 0 0, 0 0 5em 0);
+    grid-area: main;
+}
+
+aside.rad {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: aside;
+}
+
+section.newsletter {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: newsletter;
+}
+
+article.promos {
+    -ms-grid-row: 5;
+    -ms-grid-column: 2;
+    grid-area: promos;
+}
+
+aside.foryou {
+    -ms-grid-row: 5;
+    -ms-grid-column: 2;
+    grid-area: foryou;
+}
+
+footer {
+    -ms-grid-row: 6;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: footer;
+}
+
+nav {
+    /* background-image: linear-gradient(#217AFF, #7E7AFF); */
+    background-color: $color-main;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    border-bottom: 3px solid $white;
+    height: 5em;
+    overflow: hidden;
+
+    &:empty {
+        background-color: red;
+    }
+
+    &:hover {
+        height: 8em;
+    }
+
+    ul {
+        @include flex(center, center);
+        list-style: none;
+        height: 5em;
+
+        li a {
+            text-decoration: none;
+            color: $white;
+            @include margin-padding(0, 0 1em 0 1em);
+            font-weight: 500;
+        }
+    }
+
+    img {
+        width: 8em;
+        vertical-align: sub;
+    }
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: $color-main;
+
+    /* background-image: linear-gradient(#217AFF, #7E7AFF); */
+    @include margin-padding(0, .3em);
+    text-align: $tc;
+
+    a {
+        @include margin-padding(0, .2em 0 .2em 0);
+        font-weight: 300;
+    }
+}
+
+nav {
+    li {
+        position: relative;
+    }
+
+    .search {
+        text-align: $tc;
+        @include margin-padding(-.5em auto auto auto, 0 0 .3em 0);
+
+        input {
+            width: 15em;
+            @include margin-padding(0, .3em 0);
+            text-align: $tc;
+            border: none;
+            background-color: transparent;
+            border-bottom: 2px solid $white;
+            color: $white;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
+
+        button {
+            background-color: transparent;
+        }
+
+        i {
+            color: $white;
+            @include margin-padding(0 0 0 .5em, 0);
+        }
+    }
+}
+
+li {
+    &:hover>.dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    a:hover {
+        color: $white;
+        text-decoration: underline;
+    }
+}
+
+.carousel-indicators {
+    z-index: 3;
+}
+
+main h2 {
+    font-size: 1.7rem;
+    @include margin-padding(3rem 0 0 6rem, 0);
+    font-weight: 500;
+}
+
+div.h2line {
+    border-bottom: 1px solid #000;
+    width: 70%;
+    @include margin-padding(2rem 0 0 5rem, 0);
+}
+
+.products {
+    width: 80%;
+    @include margin-padding(2rem 0 0 10rem, 0);
+    @include grid(1fr 1fr 1fr);
+}
+
+.item * {
+    transition-duration: .5s;
+}
+
+section.products>.item,
+.carousel-item.item section {
+    width: 80%;
+    text-align: $tc;
+    background-color: $white;
+    @include margin-padding(1em, 0);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.144);
+    border-radius: 5%;
+    max-height: 25em;
+    min-height: 25em;
+    position: relative;
+    overflow: hidden;
+}
+
+.caption {
+    @include margin-padding(auto, 0);
+    max-height: 3%;
+
+    p {
+        width: 80%;
+        @include margin-padding(auto, 0 0 .5em 0);
+        margin: auto;
+    }
+
+    h4 {
+        width: 80%;
+        @include margin-padding(auto, 1rem 0 .5em 0);
+        font-weight: 700;
+    }
+}
+
+.numinstock {
+    @include margin-padding(2em 0 0 0, 0);
+    @include flex(center, start);
+}
+
+.item {
+    button {
+        &.addtofav {
+            left: -5em;
+            font-size: 1.5em;
+            background-color: $white;
+            border-radius: 1em;
+            @include margin-padding(0, .7em);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.144);
+        }
+
+        &.addtocart {
+            right: -5em;
+            font-size: 1.5em;
+            background-color: $white;
+            border-radius: 1em;
+            @include margin-padding(0, .7em);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.144);
+        }
+    }
+
+    figure.productpic {
+        height: 19em;
+        overflow: hidden;
+    }
+
+    &:hover {
+        figure.productpic {
+            height: 15em;
+        }
+
+        .numinstock {
+            @include margin-padding(0, 0);
+        }
+
+        button {
+            &.addtofav {
+                left: 0;
+            }
+
+            &.addtocart {
+                right: 0;
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .price {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #ff0000;
+        @include margin-padding(0, .5em);
+        color: $white;
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    button {
+        position: absolute;
+        bottom: 0;
+    }
+
+    .numinstock p {
+        font-weight: 500;
+    }
+
+    .instocklow {
+        color: #ff0000;
+    }
+
+    .instocknone {
+        color: #aaa;
+    }
+}
+
+aside.rad {
+    display: flex;
+    flex-direction: column;
+    @include margin-padding(8rem 0 0 6rem, 0);
+
+    figure.asidein {
+        width: 90%;
+        height: 25%;
+        @include margin-padding(3rem 0 0 0, 0 2rem 0 0);
+        background-color: #000;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+section.newsletter {
+    @include grid(1fr 1fr);
+    width: 100%;
+    height: 20em;
+    align-items: center;
+    background-color: $color-main;
+    color: $white;
+
+    h3 {
+        justify-self: end;
+        @include margin-padding(0 3em 0 0, 0);
+    }
+
+    input {
+        width: 20em;
+        @include margin-padding(0, .3em 0);
+        text-align: $tc;
+        border: none;
+        border-radius: 1em;
+    }
+}
+
+article.promos {
+    h3 {
+        @include margin-padding(4rem 0 0 6rem, 0);
+    }
+
+    ul {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        li {
+            @include flex(start, center);
+            @include margin-padding(1rem 0 0 6rem, 1em 0);
+
+            h4 {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+aside.foryou {
+    h3 {
+        text-align: $tc;
+        @include margin-padding(4rem 1em 1em 1em, 0);
+    }
+
+    div.h3line {
+        border-top: 1px solid #000;
+        width: 70%;
+        @include margin-padding(1em auto auto auto, 0 0 1em 0);
+    }
+
+    .carousel-inner {
+        height: 26em;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .seeall {
+        margin: auto;
+        text-align: $tc;
+    }
+
+    .carousel-item.item>section:first-of-type {
+        margin: auto;
+    }
+
+    a.carousel-controls {
+        i {
+            color: $color-main;
+            font-size: 2em;
+        }
+
+        &:nth-of-type(1) i {
+            margin-right: 1em;
+        }
+
+        &:nth-of-type(2) i {
+            margin-left: 1em;
+        }
+    }
+}
+
+footer {
+    /* background-image: linear-gradient(#217AFF, #7E7AFF); */
+    background-color: $color-main;
+    @include grid(3fr 1fr 3fr);
+    grid-template-areas: "socialf logof menuf";
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 12em;
+    margin-top: 4rem;
+    z-index: 2;
+
+    .socialfooter {
+        grid-area: socialf;
+        justify-self: end;
+        width: 30%;
+
+        ul {
+            list-style: none;
+            @include flex(space-evenly, start);
+
+            li a img {
+                width: 3em;
+                border-radius: 50%;
+                border: 1px solid $white;
+            }
+        }
+    }
+
+    a.logofooter {
+        -ms-grid-row: 1;
+        -ms-grid-column: 2;
+        grid-area: logof;
+        text-align: $tc;
+
+        img {
+            width: 10em;
+        }
+    }
+
+    .menufooter {
+        grid-area: menuf;
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            color: $white;
+        }
+    }
+}

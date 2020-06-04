@@ -1,0 +1,101 @@
+$color-main: #404040;
+
+@mixin grid($columns) {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+}
+
+body {
+    @include grid(1fr 4fr 1fr);
+    grid-template-areas: "header header header"". main .""footer footer footer";
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+main {
+    h3 {
+        display: inline;
+        padding-bottom: 3em;
+    }
+}
+
+
+.singleprodcat {
+    width: 80%;
+    @include grid(1.5fr 2fr 3fr 1fr 1fr);
+    margin: auto;
+    align-items: center;
+    margin-bottom: 1em;
+    transition-duration: .5s;
+    margin-top: 2em;
+
+    figure {
+        width: 8em;
+        height: 8em;
+        box-shadow: 2px 2px 8px #4040402f;
+        border-radius: 1em;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    h3 {
+        font-weight: 400;
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+    }
+
+    .buttonscat button {
+        display: block;
+        width: 50%;
+        border-radius: 1em;
+        margin: .5em 0;
+        box-shadow: 2px 2px 8px #4040402f;
+        z-index: 9999;
+        transition-duration: .5s;
+
+        &:hover {
+            transform: scale(1.1);
+            background-color: $color-main;
+            color: #fff;
+        }
+    }
+}
+
+.search {
+    text-align: center;
+    margin: -.5em auto auto auto;
+    padding: 0 0 .3em 0;
+
+    input {
+        width: 15em;
+        padding: .3em 0;
+        text-align: center;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid $color-main;
+        color: $color-main;
+
+        &::placeholder {
+            color: $color-main;
+        }
+    }
+
+    button {
+        background-color: transparent;
+    }
+
+    i {
+        color: $color-main;
+        margin: 0 0 0 .5em;
+    }
+}

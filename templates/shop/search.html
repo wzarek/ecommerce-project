@@ -1,12 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block styles %}
+<link rel="stylesheet" href="{% static '/scss/search/search.css' %}">
+{% endblock styles %}
 {% block content %}
 </header>
 <main>
+    {% if query and products.all.count > 0 %}
     <h1>Znaleziono {{ products.all.count }} wyników dla '{{ query }}'</h1>
-    {% for product in products %}
-    <h3>{{ product.brand }} {{ product.model }}</h3>
-    {% endfor %}
+    <section class="productscat">
+        {% for p in products %}
+        <section class="singleprodcat">
+            <figure class="productcatpic" onclick="window.location.href='{% url 'singleprod' p.slug %}'">
+                <img src="{{ p.thumbnail.url }}" alt="" />
+            </figure>
+            <span onclick="window.location.href='{% url 'singleprod' p.slug %}'">
+                <h3>{{ p.model }}</h3>
+                <p>{{ p.brand }}</p>
+            </span>
+            <p onclick="window.location.href='{% url 'singleprod' p.slug %}'">Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Id, adipisci...</p>
+            {% if p.sale %}
+            <span onclick="window.location.href='{% url 'singleprod' p.slug %}'">
+                <del>{{ p.price }} zł</del>
+                <p>{{ p.sale }} zł</p>
+            </span>
+            {% else %}
+            <p onclick="window.location.href='{% url 'singleprod' p.slug %}'">{{ p.price }} zł</p>
+            {% endif %}
+            <section class="buttonscat">
+                <button class="addtocartcat" onclick="window.location.href='{% url 'update_cart' p.slug 1 %}'"><i
+                        class="fa fa-shopping-cart"></i></button>
+                <button class="addtofavcat"><i class="fa fa-heart"></i></button>
+            </section>
+        </section>
+        <!-- <div class="catline"></div> -->
+        {% endfor %}
+        {% else %}
+        <h1>Coś poszło nie tak</h1>
+        <h3>Spróbuj jeszcze raz</h3>
+        <form action='{% url 'search' %}' class="search">
+            <input type="text" id="navSearch" name='search' placeholder="szukaj">
+            <button type=submit><i class="fa fa-search"></i></button>
+        </form>
+        {% endif %}
 </main>
 {% endblock content %}
