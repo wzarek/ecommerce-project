@@ -63,7 +63,7 @@
         <tr>
             <td class="imgname">
                 <figure><img src="{{ item.product.thumbnail.url }}" alt=""></figure>
-                <p>{{ item.product }}</p>
+                <p><a href="{% url 'singleprod' item.product.slug %}">{{ item.product }}</a></p>
             </td>
             <td>{{ item.product.sale }} zł</td>
             <td>{{ item.quantity }}</td>
